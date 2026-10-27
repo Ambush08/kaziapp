@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+:root {
+  /* Brand greens */
+  --brand: #0f7a35;
+
+  /* Dark hero section */
+  --hero-bg: #060b14;
+  --hero-card: #0c1420;
+  --card-highlight: #162538;
+  --hero-border: #1c2733;
+  --hero-text: #ffffff;
+  --hero-muted: #9aa5b4;
+
+  /* Light surfaces */
+  --background: #ffffff;
+  --surface: #f3f5f1;
+  --surface-hover: #e6e9e3;
+  --border: #e5e7eb;
+
+  /* Text */
+  --light: #ffffff;
+  --foreground: #0b1220;
+  --muted: #6b7280;
+
+  /* Status and extras */
+  --star: #f5b301;
+  --danger: #dc2626;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+@theme {
+  /* Brand greens */
+  --color-brand: var(--brand);
+
+  /* Dark hero section */
+  --color-hero-bg: var(--hero-bg);
+  --color-hero-card: var(--hero-card);
+  --color-card-highlight: var(--card-highlight);
+  --color-hero-border: var(--hero-border);
+  --color-hero-text: var(--hero-text);
+  --color-hero-muted: var(--hero-muted);
+
+  /* Light surfaces */
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-border: var(--border);
+
+  /* Text */
+  --color-light: var(--light);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+
+  /* Status and extras */
+  --color-star: var(--star);
+  --color-danger: var(--danger);
+}
+
+@keyframes word-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-word-in {
+  animation: word-in 0.4s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-word-in {
+    animation: none;
+  }
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-menu-in {
+  animation: word-in 0.4s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-menu-in {
+    animation: none;
+  }
+}
+
+@keyframes menu-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+.animate-menu-in {
+  animation: menu-in 0.3s ease-out;
+}
+
+.animate-menu-out {
+  animation: menu-out 0.3s ease-in forwards;
+}
+
+
+
+@keyframes animate-job-card {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-job-card {
+  animation: animate-job-card 0.5s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-job-card {
+    animation: none;
+  }
+}
