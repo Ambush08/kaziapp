@@ -4,8 +4,8 @@ import formatTime from "../../utils/formatTime";
 
 interface JobCardProps {
   job: any;
-  loading: any,
-  error: any
+  loading: boolean,
+  error: string
 }
 
 const HeroJobCard = ({ job, loading, error }: JobCardProps) => {
