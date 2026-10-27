@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import AnimateText from "./heroText";
-import { FaSearch, FaMapMarkerAlt , FaArrowRight} from "react-icons/fa";
+import { FaSearch, FaArrowRight} from "react-icons/fa";
 import { FiArrowUpRight } from "react-icons/fi";
 import Stats from "./stats";
 
