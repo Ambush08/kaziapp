@@ -70,7 +70,7 @@ const MainHeader = () => {
         </Link>
 
         {/* Nav links */}
-        <ul className="hidden items-center gap-8 md:flex">
+        <ul className="hidden text-muted text-xs items-center gap-8 md:flex">
           {navLinks.map((item) => (
             <li key={item.to}>
               <NavLink to={item.to} className={linkClass} onClick={closeMenu}>

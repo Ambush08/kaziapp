@@ -15,7 +15,7 @@ const HeroCard = ({ interval = 3000 }) => {
 
   const { jobs, error, loading } = context;
 
-  const handleCurrentJob = (index: number) => {
+  const handleCurrentIndex = (index: number) => {
     setCurrentJob(index);
   };
 
@@ -58,10 +58,10 @@ const HeroCard = ({ interval = 3000 }) => {
               return (
                 <button
                   key={index}
-                  className={`p-1 rounded-full transition-colors ${
+                  className={`p-1 rounded-full transition-colors cursor-pointer ${
                     currentJob === index ? "bg-green-500 px-3" : "bg-gray-700"
                   }`}
-                  onClick={() => handleCurrentJob(index)}
+                  onClick={() => handleCurrentIndex(index)}
                 ></button>
               );
             })}

@@ -1,4 +1,5 @@
 import Footer from "../../components/footer/footer";
+import JobsHeader from "../../components/jobs/jobsHeader";
 import Navbar from "../../components/nav/navbar";
 
 
@@ -8,7 +9,8 @@ import Navbar from "../../components/nav/navbar";
 const Jobs = () => {
     return (
         <>
-            <Navbar /> 
+            <Navbar />
+            <JobsHeader />
             <Footer />
         </>
     )
