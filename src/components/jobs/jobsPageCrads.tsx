@@ -1,4 +1,5 @@
 import { Search } from "lucide-react";
+import JobPageCard from "./jobPageCard";
 
 
 
@@ -15,6 +16,11 @@ const JobsPageCards = () => {
                     <Search size={14}/>
                     <input type="text" placeholder="search jobs" className="outline-0"/>
                 </div>
+            </div>
+
+            {/* Job card */}
+            <div className="flex flex-col gap-4 w-full items-start">
+                <JobPageCard />
             </div>
         </div>
     )
