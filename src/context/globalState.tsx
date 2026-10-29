@@ -10,7 +10,8 @@ interface GlobalContextType {
   jobs: any[];
   loading: boolean;
   error: string;
-  blogs: any[]
+  blogs: any[],
+  categories: any[]
 }
 
 export const GlobalContext =
@@ -25,6 +26,7 @@ export const GlobalState = ({ children }: GlobalStateProps) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [blogs, setBlogs] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   const getJobs = async () => {
     setLoading(true);
@@ -45,11 +47,6 @@ export const GlobalState = ({ children }: GlobalStateProps) => {
     }
   };
 
-  useEffect(() => {
-    getJobs();
-  }, []);
-
-
   const getBlogs = async( ) => {
     setLoading(true);
     setError('')
@@ -69,13 +66,35 @@ export const GlobalState = ({ children }: GlobalStateProps) => {
   }
 
 
+  const getCategories = async () => {
+    setLoading(true)
+    setError('');
+    try {
+      const response = await axios.get('https://job-app-peach-iota.vercel.app/api/v1/categories');
+
+      const data = response.data;
+
+      console.log(data)
+
+      setCategories(data.categories)
+    } catch (error) {
+      console.log('Failed to fetch categories', error)
+      setError('Failed to fetch blogs. Try again')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+
   useEffect(() => {
-    getBlogs()
+    getJobs();
+    getBlogs();
+    getCategories()
   }, [])
 
   return (
     <GlobalContext.Provider
-      value={{ jobs, loading, error, blogs, }}
+      value={{ jobs, loading, error, blogs, categories }}
     >
       {children}
     </GlobalContext.Provider>
