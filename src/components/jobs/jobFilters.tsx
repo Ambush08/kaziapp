@@ -1,3 +1,4 @@
+import Category from "./category";
 import ExperienceLevel from "./experienceLevel";
 import SalaryRange from "./salaryRange";
 import WorkArrangement from "./workArrangement";
@@ -12,6 +13,9 @@ const JobFilters = () => {
             <div className="border-b border-b-gray-300 text-sm font-semibold tracking-wide py-2">
                 <h2>FILTERS</h2>
             </div>
+
+            {/* Category */}
+            <Category />
 
             {/* Work arrangement */}
             <WorkArrangement />
