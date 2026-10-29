@@ -21,7 +21,7 @@ const headerContent: JobsHeader[] = [
     leadingText: "Advice for your next move.",
     description: "Practical guidance from KaziFiti blog.",
     cta: 'Read blogs',
-    to: '/'
+    to: ''
   },
   {
     icon: <ShieldCheck size={14} />,
@@ -29,7 +29,7 @@ const headerContent: JobsHeader[] = [
     leadingText: "Every listing is screened.",
     description: "We check every company before a role goes live.",
     cta: 'Browse jobs',
-    to: '/'
+    to: ''
   },
   {
     icon: <FaWhatsapp />,
@@ -37,7 +37,7 @@ const headerContent: JobsHeader[] = [
     leadingText: "You're not alone",
     description: "A community finding work together",
     cta: 'Join',
-    to: '/'
+    to: ''
   },
 ];
 

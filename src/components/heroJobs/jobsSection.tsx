@@ -1,7 +1,7 @@
 import JobCards from "./heroJobs";
 import JobsSectionHeader from "./jobsSectionHeader";
 
-const JobsSection = () => {
+const JobsHeroSection = () => {
   return (
     <section className="w-full py-12">
       <div className="px-6 max-w-6xl mx-auto flex flex-col items-start gap-4">
@@ -12,4 +12,4 @@ const JobsSection = () => {
   );
 };
 
-export default JobsSection;
+export default JobsHeroSection;

@@ -1,6 +1,6 @@
 import Hero from "../../components/hero/Hero";
 import BlogSection from "../../components/heroBlogs/blogSection";
-import JobsSection from "../../components/heroJobs/jobsSection";
+import JobsHeroSection from "../../components/heroJobs/jobsSection";
 import Subscribe from "../../components/newsletter/subscribe";
 import Partners from "../../components/partners";
 import Packages from "../../components/payments/packages";
@@ -16,7 +16,7 @@ const HomePage = () => {
         <Navbar />
         <Hero />
         <Partners />
-        <JobsSection />
+        <JobsHeroSection />
         <BlogSection />
         <Packages />
         <Testimonial />

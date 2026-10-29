@@ -75,7 +75,7 @@ export const GlobalState = ({ children }: GlobalStateProps) => {
 
   return (
     <GlobalContext.Provider
-      value={{ jobs, loading, error, blogs }}
+      value={{ jobs, loading, error, blogs, getJobs }}
     >
       {children}
     </GlobalContext.Provider>
