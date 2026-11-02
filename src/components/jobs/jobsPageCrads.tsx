@@ -1,10 +1,32 @@
 import { Search } from "lucide-react";
 import JobPageCard from "./jobPageCard";
+import { useContext } from "react";
+import { GlobalContext } from "../../context/globalState";
 
 
 
 
 const JobsPageCards = () => {
+
+    const context = useContext(GlobalContext);
+
+    if(!context) {
+        throw new Error("GlobalContext is not available");
+    }
+
+    const { jobs, loading, error } = context;
+
+    if(loading) {
+        return <p className="text-xs text-muted">Loading...</p>
+    }
+
+    if(error) {
+        return <p>{error}</p>
+    }
+
+    if(jobs.length === 0) {
+        return <p className="text-xs text-muted">No jobs available</p>
+    }
     return(
         <div className="flex flex-col items-start gap-4">
             <div className="flex flex-col lg:flex-row items-start lg:items-center lg:justify-between gap-3 w-full">
@@ -20,7 +42,11 @@ const JobsPageCards = () => {
 
             {/* Job card */}
             <div className="flex flex-col gap-4 w-full items-start">
-                <JobPageCard />
+                {
+                    jobs.map((job) => (
+                        <JobPageCard key={job._id} job={job} />
+                    ))
+                }
             </div>
         </div>
     )
