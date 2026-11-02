@@ -17,7 +17,7 @@ const Blog = ({ blogData }: BlogProps) => {
         />
       </div>
       <div className="flex flex-col gap-2 items-start">
-        <h2 className="text-lg font-bold tracking-wide">{blogData.title}</h2>
+        <h2 className="text-md font-bold tracking-wide">{blogData.title}</h2>
         <p className="text-xs text-muted tracking-wide line-clamp-2">
           {blogData.snippet}
         </p>
@@ -27,8 +27,8 @@ const Blog = ({ blogData }: BlogProps) => {
         <ArrowUpRight size={14} />
       </div>
       <div className="text-xs text-muted flex items-center justify-between capitalize font-semibold">
-        <h4><span className="text-brand">Created:</span> {formatTime(blogData.createdAt)}</h4>
-        <h4><span className="text-brand">Posted By:</span> {blogData.postedBy}</h4>
+        <p><span className="text-brand">Created:</span> {formatTime(blogData.createdAt)}</p>
+        <p><span className="text-brand">Posted By:</span> {blogData.postedBy}</p>
       </div>
     </div>
   );
