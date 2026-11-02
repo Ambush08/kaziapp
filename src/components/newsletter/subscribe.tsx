@@ -6,7 +6,7 @@ const Subscribe = () => {
           <div className="flex flex-col items-start py-6 px-4 gap-4">
             <div className="flex items-center gap-2  text-green-400 text-xs">
               <div className="size-2 rounded-full animate-pulse bg-green-400"></div>
-              <p>Weekly brief</p>
+              <p className="tracking-wide">Weekly brief</p>
             </div>
 
             <div className="flex flex-col items-start gap-4">

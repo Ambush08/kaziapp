@@ -20,9 +20,9 @@ const Job = ({ jobData }: JobProps) => {
       </div>
 
       <div className="felx flex-col space-y-3 border-b border-b-gray-300 w-full pb-6">
-        <h4 className="text-lg font-semibold tracking-wide">
-          {jobData.job.title}
-        </h4>
+        <Link to={''} className="text-md font-bold hover:text-brand">
+              {jobData.job.title}
+            </Link>
         <p className="text-xs text-muted tracking-wide">
           <span>{jobData.job.company} </span>
           <span>. {jobData.job.location}</span>
