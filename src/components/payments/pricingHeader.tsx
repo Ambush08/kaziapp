@@ -14,7 +14,7 @@ const PricingHeader = () => {
                     <span className="text-light">Pricing that </span>
                     <span className="text-green-400">grows with you.</span>
                 </h2>
-                <p className="text-sm text-muted tracking-wide w-2/4">Start free, upgrade when you are hiring consistently, and scale without switching tools. No hidden fees, no lock-in.</p>
+                <p className="text-sm text-muted tracking-wide w-3/4">Start free, upgrade when you are hiring consistently, and scale without switching tools. No hidden fees, no lock-in.</p>
             </div>
         </section>
     )
