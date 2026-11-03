@@ -1,12 +1,16 @@
 import Footer from "../../components/footer/footer";
 import Navbar from "../../components/nav/navbar";
-import Packages from "../../components/payments/packages";
+import PricingCTA from "../../components/payments/pricingCta";
+import PricingHeader from "../../components/payments/pricingHeader";
+import PricingSection from "../../components/payments/pricingSection";
 
 const Pricing = () => {
   return (
     <>
       <Navbar />
-      <Packages />
+      <PricingHeader />
+      <PricingSection />
+      <PricingCTA />
       <Footer />
     </>
   );

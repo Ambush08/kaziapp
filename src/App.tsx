@@ -17,7 +17,7 @@ function App() {
       <Route path='/signin' element={<Login />} />
       <Route path='/signup' element={ <Signup />} />
       <Route path='/pricing' element={<Pricing />}/>
-      <Route path='*' element={<h1 className="text-3xl font-bold text-center my-60">404 Page Not Found</h1>} />
+      <Route path='*' element={<h1 className="text-3xl font-bold text-center py-80 text-light bg-hero-bg min-h-screen">404 Page Not Found</h1>} />
       <Route path='/blogs' element={<Blogs />}/>
       <Route path='/saved-jobs' element={<SavedJobs />}/>
     </Routes>
