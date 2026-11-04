@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from 'lucide-react'
 import NoSavedJob from "./noSavedJob";
-import SavedJobsCards from "./savedJobsCards";
 
 
 
@@ -21,11 +20,8 @@ const SavedJobsSection = () => {
                 </div>
                 
                 {/* NO SAVED JOBS */}
-                { /*<NoSavedJob /> */}
+                <NoSavedJob /> 
 
-
-                {/* SAVED JOBS */}
-                <SavedJobsCards />
             </div>
         </section>
     )
