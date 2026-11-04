@@ -52,7 +52,7 @@ const JobsHeader = ({ interval = 3000 }) => {
     }, interval);
 
     return () => clearInterval(timer);
-  }, [interval, currentIndex]);
+  }, [interval, headerContent.length]);
 
 
   return (
