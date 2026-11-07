@@ -36,7 +36,9 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const signUp = async (firstName: string, lastName: string, email: string, password: string) => {
-    await api.post('/user/auth/register', {firstName, lastName, email, password})
+    const res = await api.post('/user/auth/register', {firstName, lastName, email, password});
+
+    console.log(res.data.user)
   }
 
   const logout = async () => {

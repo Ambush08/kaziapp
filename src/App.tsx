@@ -7,6 +7,8 @@ import Jobs from './pages/jobsPage/jobs';
 import Pricing from './pages/pricingPage/pricing';
 import Blogs from './pages/blogsPage/blogs';
 import SavedJobs from './pages/savedJobsPage/savedJobs';
+import BlogPost from './pages/BlogPage/blogPost';
+import JobPost from './pages/JobPage/jobPost';
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
       <Route path='*' element={<h1 className="text-3xl font-bold text-center py-80 text-light bg-hero-bg min-h-screen">404 Page Not Found</h1>} />
       <Route path='/blogs' element={<Blogs />}/>
       <Route path='/saved-jobs' element={<SavedJobs />}/>
+      <Route path='/blogs/blog/:id' element={< BlogPost/>} />
+      <Route path='/jobs/job/:id' element={< JobPost/>} />
     </Routes>
     </>
     

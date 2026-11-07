@@ -1,6 +1,7 @@
 import { Wallet } from "lucide-react";
 import { FaArrowRight, FaMapMarkerAlt } from "react-icons/fa";
 import formatTime from "../../utils/formatTime";
+import { Link } from "react-router-dom";
 
 interface JobCardProps {
   job: any;
@@ -82,10 +83,10 @@ const HeroJobCard = ({ job, loading, error }: JobCardProps) => {
         </ul>
       </div>
 
-      <div className="text-light bg-brand py-2 rounded-md flex items-center justify-center gap-2 hover:bg-green-600 transition-colors cursor-pointer text-xs">
-        <button>View job post</button>
+      <Link to={`/jobs/job/${job.job.id}`} className="text-light bg-brand py-2 rounded-md flex items-center justify-center gap-2 hover:bg-green-600 transition-colors cursor-pointer text-xs">
+        <span>View job post</span>
         <FaArrowRight />
-      </div>
+      </Link>
     </div>
   );
 };

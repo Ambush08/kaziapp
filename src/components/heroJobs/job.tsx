@@ -20,7 +20,7 @@ const Job = ({ jobData }: JobProps) => {
       </div>
 
       <div className="felx flex-col space-y-3 border-b border-b-gray-300 w-full pb-6">
-        <Link to={''} className="text-md font-bold hover:text-brand">
+        <Link to={`/jobs/job/${jobData.job.id}`} className="text-md font-bold hover:text-brand">
               {jobData.job.title}
             </Link>
         <p className="text-xs text-muted tracking-wide">
@@ -64,7 +64,7 @@ const Job = ({ jobData }: JobProps) => {
           <span className="text-xs text-muted">per month</span>
         </h3>
 
-        <Link to={`jobs/:id}`}>
+        <Link to={`/jobs/job/${jobData.job.id}`}>
           <FiArrowUpRight />
         </Link>
       </div>

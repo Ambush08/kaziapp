@@ -17,13 +17,13 @@ const Blog = ({ blogData }: BlogProps) => {
         />
       </div>
       <div className="flex flex-col gap-2 items-start">
-        <h2 className="text-md font-bold tracking-wide">{blogData.title}</h2>
+        <Link to={`blog/${blogData.id}`} className="text-md font-bold tracking-wide">{blogData.title}</Link>
         <p className="text-xs text-muted tracking-wide line-clamp-2">
           {blogData.snippet}
         </p>
       </div>
       <div className="text-xs text-green-700 flex gap-1 items-center">
-        <Link to={"/jobs/:id"}>Read Article</Link>
+        <Link to={`blog/${blogData.id}`}>Read Article</Link>
         <ArrowUpRight size={14} />
       </div>
       <div className="text-xs text-muted flex items-center justify-between capitalize font-semibold">

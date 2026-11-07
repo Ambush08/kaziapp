@@ -1,9 +1,8 @@
 import axios from "axios";
 import { Mail, Lock, ArrowRight, ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
-import { useState, type FormEvent } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, type FormEvent, useEffect } from "react";
 
 const LoginForm = () => {
   const { login } = useAuth();
@@ -40,10 +39,22 @@ const LoginForm = () => {
       } else {
         setError("Something went wrong. Please try again.");
       }
+
+      setEmail("");
+      setPassword("");
+
     } finally {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+  if (!error) return;
+
+  const timer = setTimeout(() => setError(""), 5000); // 5 seconds
+
+  return () => clearTimeout(timer);
+}, [error]);
 
   return (
     <div className="flex flex-col items-start lg:items-center lg:min-h-screen justify-center gap-6 mx-12 py-20">
@@ -92,7 +103,7 @@ const LoginForm = () => {
             />
           </div>
         </div>
-        {error && <p className="text-red-500 text-xs">{error}. Invalid email or password</p>}
+        {error && <p className="text-red-500 text-xs">{error}</p>}
         <div className="flex items-center justify-between text-xs my-4 w-full">
           <label>
             <input type="checkbox" name="terms" className="accent-brand" />{" "}
