@@ -41,7 +41,7 @@ const HeroJobCard = ({ job, loading, error }: JobCardProps) => {
           <span>
             <Wallet size={20} className="text-green-500" />
           </span>
-          <h3 className="text-light font-bold text-xs">
+          <p className="text-light font-bold text-xs">
             <span>
               {new Intl.NumberFormat("en-KE", {
                 style: "currency",
@@ -59,7 +59,7 @@ const HeroJobCard = ({ job, loading, error }: JobCardProps) => {
                 maximumFractionDigits: 0,
               }).format(job.job.salaryMax)}
             </span>
-          </h3>
+          </p>
         </h3>
         <h3 className="flex items-center gap-2">
           <span>

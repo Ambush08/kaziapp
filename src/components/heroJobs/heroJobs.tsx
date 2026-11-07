@@ -9,7 +9,7 @@ const JobCards = () => {
     throw new Error("JobCards must be used within GlobalState");
   }
 
-  const { jobs, error, loading } = context;
+  const { heroJobs, error, loading } = context;
 
   if (loading) {
     return <p className="text-xs text-brand">Loading jobs...</p>;
@@ -19,12 +19,12 @@ const JobCards = () => {
     return <p>{error}</p>;
   }
 
-  if (jobs.length === 0) {
+  if (heroJobs.length === 0) {
     return <p>No jobs found.</p>;
   }
   return (
     <div className="grid grid-cols-1 gap-4 w-full lg:grid-cols-3 lg:gap-6 items-stretch">
-      {jobs.map((job) => {
+      {heroJobs.map((job) => {
         return <Job key={job._id ?? job.id} jobData={job}/>;
       })}
     </div>

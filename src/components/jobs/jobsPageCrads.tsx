@@ -44,7 +44,7 @@ const JobsPageCards = () => {
             <div className="flex flex-col gap-4 w-full items-start">
                 {
                     jobs.map((job) => (
-                        <JobPageCard key={job._id} job={job} />
+                        <JobPageCard key={job.job.id} job={job} />
                     ))
                 }
             </div>

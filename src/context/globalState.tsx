@@ -1,21 +1,25 @@
 import axios from "axios";
-import {
-  createContext,
-  useEffect,
-  useState,
-  type ReactNode,
-} from "react";
+import { createContext, useEffect, useState, type ReactNode } from "react";
 
 interface GlobalContextType {
   jobs: any[];
+  heroJobs: any[];
   loading: boolean;
   error: string;
-  blogs: any[],
-  categories: any[]
+  blogs: any[];
+  categories: any[];
+  getJobs: () => void;
 }
 
-export const GlobalContext =
-  createContext<GlobalContextType | null>(null);
+export interface JobFilters {
+  categoryId?: string;
+  salary?: number;
+  limit?: number;
+  experience?: string;
+  workArrangement?: string;
+}
+
+export const GlobalContext = createContext<GlobalContextType | null>(null);
 
 interface GlobalStateProps {
   children: ReactNode;
@@ -23,78 +27,114 @@ interface GlobalStateProps {
 
 export const GlobalState = ({ children }: GlobalStateProps) => {
   const [jobs, setJobs] = useState<any[]>([]);
+  const [heroJobs, setHeroJobs] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [blogs, setBlogs] = useState([]);
-  const [categories, setCategories] = useState([]);
+  const [blogs, setBlogs] = useState<any[]>([]);
+  const [categories, setCategories] = useState<any[]>([]);
 
-  const getJobs = async () => {
+  const getHeroJobs = async () => {
     setLoading(true);
     setError("");
-
     try {
-      const result = await axios.get(
-        "https://job-app-peach-iota.vercel.app/api/v1/jobs"
+      const response = await axios.get(
+        "https://job-app-peach-iota.vercel.app/api/v1/jobs",
       );
 
-      setJobs(result.data.jobs);
-      console.log(result.data)
-    } catch (err) {
-      console.error("Failed to fetch jobs:", err);
-      setError("Failed to load jobs. Please try again.");
+      const data = response.data.jobs;
+
+      console.log("Hero jobs:", data);
+
+      setHeroJobs(data);
+    } catch (error) {
+      console.error(error);
+      setError("Failed to fecth jobs. Please try again");
     } finally {
       setLoading(false);
     }
   };
 
-  const getBlogs = async( ) => {
+  const getJobs = async (filters: JobFilters = {}) => {
     setLoading(true);
-    setError('')
+    setError("");
     try {
-      const response = await axios.get('https://job-app-peach-iota.vercel.app/api/v1/blogs');
+      const response = await axios.get(
+        "https://job-app-peach-iota.vercel.app/api/v1/jobs",
+        {
+          params: {
+            category: filters.categoryId,
+            salary: filters.salary,
+            limit: filters.limit,
+            experience: filters.experience,
+            workArrangement: filters.workArrangement,
+          },
+        },
+      );
 
-      const data = response.data;
+      const data = response.data.jobs;
 
-      setBlogs(data.blogs);
-      console.log(data)
+      console.log("Jobs:", data);
+
+      setJobs(data);
     } catch (error) {
-      console.error('Failed to fetch blogs', error);
-      setError('Failed to fetch blogs. Try again')
+      console.error(error);
+      setError("Failed to fetch jobs. Please try again.");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
+  const getBlogs = async () => {
+    setLoading(true);
+    setError("");
+    try {
+      const response = await axios.get(
+        "https://job-app-peach-iota.vercel.app/api/v1/blogs",
+      );
+
+      const data = response.data.blogs;
+
+      setBlogs(data);
+      console.log("Blogs:", data);
+    } catch (error) {
+      console.error("Failed to fetch blogs", error);
+      setError("Failed to fetch blogs. Try again");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const getCategories = async () => {
-    setLoading(true)
-    setError('');
+    setLoading(true);
+    setError("");
     try {
-      const response = await axios.get('https://job-app-peach-iota.vercel.app/api/v1/categories');
+      const response = await axios.get(
+        "https://job-app-peach-iota.vercel.app/api/v1/categories",
+      );
 
-      const data = response.data;
+      const data = response.data.categories;
 
-      console.log(data)
+      console.log("Categories:", data);
 
-      setCategories(data.categories)
+      setCategories(data);
     } catch (error) {
-      console.log('Failed to fetch categories', error)
-      setError('Failed to fetch blogs. Try again')
+      console.log("Failed to fetch categories", error);
+      setError("Failed to fetch blogs. Try again");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
-
+  };
 
   useEffect(() => {
     getJobs();
+    getHeroJobs();
     getBlogs();
-    getCategories()
-  }, [])
+    getCategories();
+  }, []);
 
   return (
     <GlobalContext.Provider
-      value={{ jobs, loading, error, blogs, categories }}
+      value={{ jobs, loading, error, blogs, categories, heroJobs, getJobs }}
     >
       {children}
     </GlobalContext.Provider>

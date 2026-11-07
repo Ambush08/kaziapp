@@ -64,12 +64,13 @@ const SignupForm = () => {
             Forgot password?
           </Link>
         </div>
-        <div className="flex items-center justify-center bg-green-800 w-full p-2 text-light hover:bg-green-700 transition-colors rounded-md gap-2 cursor-pointer">
-          <button className="cursor-pointer" type="submit">
-            Sign in
-          </button>
+        <button
+          type="submit"
+          className="flex items-center justify-center bg-green-800 w-full p-2 text-light hover:bg-green-700 transition-colors rounded-md gap-2 cursor-pointer disabled:opacity-50"
+        >
+          Sign Up
           <ArrowRight size={16} />
-        </div>
+        </button>
       </form>
 
       <div className="text-muted text-xs text-center w-full grid grid-cols-3 items-center lg:max-w-md">

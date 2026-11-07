@@ -14,7 +14,7 @@ const SectionBlogs = () => {
   const { blogs, loading, error } = context;
 
   if (loading) {
-    return <p className="text-xs text-brand">Loading jobs...</p>;
+    return <p className="text-xs text-brand max-w-6xl mx-auto px-6 py-6">Loading jobs...</p>;
   }
 
   if (error) {

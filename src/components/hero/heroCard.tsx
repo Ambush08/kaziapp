@@ -13,21 +13,21 @@ const HeroCard = ({ interval = 3000 }) => {
     throw new Error("JobCards must be used within GlobalState");
   }
 
-  const { jobs, error, loading } = context;
+  const { heroJobs, error, loading } = context;
 
   const handleCurrentIndex = (index: number) => {
     setCurrentJob(index);
   };
 
   useEffect(() => {
-    if (jobs.length <= 1) return;
+    if (heroJobs.length <= 1) return;
 
     const timer = setInterval(() => {
-      setCurrentJob((prev) => (prev + 1) % jobs.length);
+      setCurrentJob((prev) => (prev + 1) % heroJobs.length);
     }, interval);
 
     return () => clearInterval(timer);
-  }, [interval, jobs.length]);
+  }, [interval, heroJobs.length]);
 
   return (
     <div className="flex flex-col space-y-10 items-start">
@@ -50,11 +50,11 @@ const HeroCard = ({ interval = 3000 }) => {
             className="w-full"
           >
             {
-              jobs.length > 0 ? <HeroJobCard job={jobs[currentJob]} loading={loading} error={error}/> : <p>No jobs at the moment</p>
+              heroJobs.length > 0 ? <HeroJobCard job={heroJobs[currentJob]} loading={loading} error={error}/> : <p>No jobs at the moment</p>
             }
           </div>
           <div className="flex items-center gap-1 justify-center w-full">
-            {jobs.map((_, index) => {
+            {heroJobs.map((_, index) => {
               return (
                 <button
                   key={index}

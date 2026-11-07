@@ -13,9 +13,6 @@ const TrendingJobs = () => {
             <TrendingJob />
             <TrendingJob />
             <TrendingJob />
-            <TrendingJob />
-            <TrendingJob />
-            <TrendingJob />
         </div>
     )
 }

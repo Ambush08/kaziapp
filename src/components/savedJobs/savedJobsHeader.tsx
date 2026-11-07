@@ -12,7 +12,7 @@ const SavedJobsHeader = () => {
                     <h3>YOUR SHORTLIST</h3>
                 </div>
                 <h2 className="text-light tracking-wide text-3xl lg:text-4xl font-bold">Saved <span className="text-green-400">Jobs.</span></h2>
-                <p className="text-muted tracking-wide text-sm leading-relaxed lg:w-1/2">Keep the roles you love within reach. Bookmark anything interesting and come back when you are ready to apply.</p>
+                <p className="text-muted tracking-wide text-xs lg:text-sm leading-relaxed lg:w-1/2">Keep the roles you love within reach. Bookmark anything interesting and come back when you are ready to apply.</p>
             </div>
         </section>
     )

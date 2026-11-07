@@ -2,20 +2,22 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState, useContext } from "react";
 import { GlobalContext } from "../../context/globalState";
 
-const Category= () => {
-  const context = useContext(GlobalContext)
+
+const Category = () => {
+  const context = useContext(GlobalContext);
 
   if (!context) {
     throw new Error("JobCards must be used within GlobalState");
   }
 
-  const { categories } = context
+  const { categories } = context;
   const [openFilter, setOpenFilter] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   const handleOpenFilter = () => {
     setOpenFilter(!openFilter);
   };
+
 
   return (
     <div className="flex flex-col gap-2 items-start border-b border-b-gray-300 py-3">
@@ -34,11 +36,13 @@ const Category= () => {
       {/* Work arrangement list items */}
       {openFilter && (
         <ul className="flex flex-col items-start gap-3 w-full">
-          {
-            categories.map((category) => {
-              return(
-                <li key={category.id} className="text-xs text-muted flex items-center gap-2">
-                  <input
+          {categories.map((category) => {
+            return (
+              <li
+                key={category.id}
+                className="text-xs text-muted flex items-center gap-2"
+              >
+                <input
                   type="radio"
                   id={category.id}
                   name="category"
@@ -48,10 +52,9 @@ const Category= () => {
                   className="h-4 w-4 accent-green-700"
                 />
                 <label htmlFor={category.id}>{category.name}</label>
-                </li>
-              )
-            })
-          }
+              </li>
+            );
+          })}
         </ul>
       )}
     </div>

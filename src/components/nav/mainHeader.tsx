@@ -1,6 +1,8 @@
 import { Briefcase, Menu, Wallet, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/authContext";
+
 
 interface NAVITEMS {
   label: string;
@@ -24,6 +26,12 @@ const MainHeader = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
   const location = useLocation();
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const { isAuthenticated, logout } = useAuth();
+
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     if (menuOpen) {
@@ -43,7 +51,7 @@ const MainHeader = () => {
   }, [location.pathname]);
 
   const hanleResize = () => {
-    if (window.innerWidth >= 640) {
+    if (window.innerWidth >= 768) {
       setMenuOpen(false);
     }
   };
@@ -55,6 +63,23 @@ const MainHeader = () => {
       window.removeEventListener("resize", hanleResize);
     };
   }, []);
+
+  const logoutUser = async () => {
+    setLoading(true);
+    setError("");
+    try {
+      await logout();
+
+      navigate("/signin", { replace: true });
+    } catch (error) {
+      console.error(error);
+      setError("Something went wrong. Please try againg");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  console.log(error);
 
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200 bg-white relative">
@@ -80,13 +105,24 @@ const MainHeader = () => {
           ))}
         </ul>
         <div className="flex items-center gap-2 sm:gap-3">
+          {isAuthenticated ? (
+            <button
+              onClick={logoutUser}
+              disabled={loading}
+              className="hidden rounded-lg bg-surface px-4 py-2.5 text-sm font-semibold text-gray-900 transition-colors hover:bg-gray-200 md:inline-block"
+            >
+              {loading ? "loging out" : "Sign out"}
+            </button>
+          ) : (
+            <Link
+              to="/signin"
+              className="hidden rounded-lg bg-surface px-4 py-2.5 text-sm font-semibold text-gray-900 transition-colors hover:bg-gray-200 md:inline-block"
+            >
+              Sign in
+            </Link>
+          )}
           <Link
-            to="/signin"
-            className="hidden rounded-lg bg-surface px-4 py-2.5 text-sm font-semibold text-gray-900 transition-colors hover:bg-gray-200 md:inline-block"
-          >
-            Sign in
-          </Link>
-          <Link to={'/pricing'}
+            to={"/pricing"}
             className="flex items-center gap-2 rounded-lg bg-green-700 px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-green-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-700 sm:px-4 sm:py-2.5"
           >
             <Wallet className="h-4 w-4" aria-hidden="true" />
@@ -116,7 +152,6 @@ const MainHeader = () => {
               setMenuVisible(false);
             }
           }}
-
           className={`absolute left-0 top-full z-50 w-full bg-surface flex flex-col py-6 ${
             menuOpen ? "animate-menu-in" : "animate-menu-out"
           }`}
@@ -125,7 +160,11 @@ const MainHeader = () => {
             {navLinks.map((item) => {
               return (
                 <li key={item.to} className="px-6 mt-2">
-                  <NavLink to={item.to} className={linkClass} onClick={closeMenu}>
+                  <NavLink
+                    to={item.to}
+                    className={linkClass}
+                    onClick={closeMenu}
+                  >
                     {item.label}
                   </NavLink>
                 </li>
@@ -135,15 +174,23 @@ const MainHeader = () => {
 
           {/*Sign in button */}
           <div className="px-6 mt-5">
-            <Link
-              to="/signin"
-              onClick={() => {
-                setMenuOpen(false);
-              }}
-              className="rounded-lg py-2.5 text-sm font-semibold text-light transition-colors bg-green-700 px-6 hover:text-green-700 hover:bg-light"
-            >
-              Sign in
-            </Link>
+            {isAuthenticated ? (
+              <button
+                onClick={logoutUser}
+                disabled={loading}
+                className="rounded-lg py-2.5 text-sm font-semibold text-light bg-green-700 px-6 hover:bg-green-800 disabled:opacity-50"
+              >
+                {loading ? "Logging out..." : "Sign out"}
+              </button>
+            ) : (
+              <Link
+                to="/signin"
+                onClick={closeMenu}
+                className="rounded-lg py-2.5 text-sm font-semibold text-light bg-green-700 px-6 hover:bg-green-800"
+              >
+                Sign in
+              </Link>
+            )}
           </div>
         </div>
       )}
