@@ -83,7 +83,7 @@ const HeroJobCard = ({ job, loading, error }: JobCardProps) => {
         </ul>
       </div>
 
-      <Link to={`/jobs/job/${job.job.id}`} className="text-light bg-brand py-2 rounded-md flex items-center justify-center gap-2 hover:bg-green-600 transition-colors cursor-pointer text-xs">
+      <Link to={`/job/${job.job.id}`} className="text-light bg-brand py-2 rounded-md flex items-center justify-center gap-2 hover:bg-green-600 transition-colors cursor-pointer text-xs">
         <span>View job post</span>
         <FaArrowRight />
       </Link>

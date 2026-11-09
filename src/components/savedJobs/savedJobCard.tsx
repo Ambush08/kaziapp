@@ -13,7 +13,7 @@ const SavedJobCard = () => {
       </div>
 
       <div className="felx flex-col space-y-3 border-b border-b-gray-300 w-full pb-6">
-        <Link to={""} className="text-md font-bold hover:text-brand">
+        <Link to={'/job/:id'} className="text-md font-bold hover:text-brand">
           Junior Software Engineer
         </Link>
         <p className="text-xs text-muted tracking-wide">
@@ -39,7 +39,7 @@ const SavedJobCard = () => {
           <span className="text-xs text-muted">per month</span>
         </h3>
 
-        <Link to={`job/:id}`}>
+        <Link to={'/job/:id'}>
           <FiArrowUpRight />
         </Link>
       </div>

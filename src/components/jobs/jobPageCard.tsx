@@ -13,7 +13,7 @@ const JobPageCard = ({ job }: { job: any }) => {
           </div>
           <div className="flex flex-col gap-3 items-start">
             <Link
-              to={`/jobs/job/${job.job.id}`}
+              to={`/job/${job.job.id}`}
               className="text-md font-bold hover:text-brand"
             >
               {job.job.title}
@@ -74,7 +74,7 @@ const JobPageCard = ({ job }: { job: any }) => {
             <Bookmark size={18} className="cursor-pointer" />
           </button>
           <Link
-            to={`/jobs/job/${job.job.id}`}
+            to={`/job/${job.job.id}`}
             className="flex flex-1 items-center bg-hero-bg cursor-pointer gap-1 text-xs text-light justify-center py-2 rounded-lg font-bold hover:bg-hero-card"
           >
             <span>View job</span>

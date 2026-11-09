@@ -32,7 +32,7 @@ function App() {
         <Route element={<ProtectedRoutes />}>
           <Route path="/saved-jobs" element={<SavedJobs />} />
           <Route path="/blogs/blog/:id" element={<BlogPost />} />
-          <Route path="/jobs/job/:id" element={<JobPost />} />
+          <Route path="/job/:id" element={<JobPost />} />
         </Route>
       </Routes>
     </>
