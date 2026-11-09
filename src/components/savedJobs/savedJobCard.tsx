@@ -39,7 +39,7 @@ const SavedJobCard = () => {
           <span className="text-xs text-muted">per month</span>
         </h3>
 
-        <Link to={`jobs/:id}`}>
+        <Link to={`job/:id}`}>
           <FiArrowUpRight />
         </Link>
       </div>

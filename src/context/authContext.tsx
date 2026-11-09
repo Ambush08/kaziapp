@@ -13,6 +13,7 @@ interface AuthContextType {
     email: string,
     password: string
   ) => Promise<void>;
+  fetchJob: (jobId: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -44,13 +45,27 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   const logout = async () => {
     try {
       await api.post("/user/auth/logout");
+
     } finally {
       setAccessToken(null);
       setIsAuthenticated(false);
     }
   };
 
-  return <AuthContext value={{ login, logout, isAuthenticated, initializing, signUp }}>{children}</AuthContext>;
+
+  const fetchJob = async (jobId: string) => {
+    try {
+      const response = await api.get(`/api/v1/jobs/job/${jobId}`);
+
+      const data = response.data.job;
+
+      console.log(data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+  
+  return <AuthContext value={{ login, logout, isAuthenticated, initializing, signUp, fetchJob}}>{children}</AuthContext>;
 };
 
 export const useAuth = () => {

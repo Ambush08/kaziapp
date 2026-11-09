@@ -10,11 +10,10 @@ export const setAccessToken = (token: string | null) => {
 
 export const getAccessToken = () => accessToken;
 
-
 // sends the refresh cookie
 export const api = axios.create({
   baseURL: API_URL,
-  withCredentials: true, 
+  withCredentials: true,
 });
 
 api.interceptors.request.use((config) => {
@@ -30,7 +29,7 @@ let refreshPromise: Promise<string> | null = null;
 export const refreshAccessToken = async (): Promise<string> => {
   if (!refreshPromise) {
     refreshPromise = axios
-      .post(`${API_URL}/auth/refresh`, {}, { withCredentials: true })
+      .post(`${API_URL}/user/auth/refresh-token`, {}, { withCredentials: true })
       .then((res) => {
         setAccessToken(res.data.accessToken);
         return res.data.accessToken as string;
@@ -47,8 +46,8 @@ api.interceptors.response.use(
   async (error) => {
     const original = error.config;
     const isAuthRoute =
-      original?.url?.includes("/auth/login") ||
-      original?.url?.includes("/auth/refresh");
+      original?.url?.includes("/user/auth/login") ||
+      original?.url?.includes("/user/auth/refresh-token");
 
     if (error.response?.status === 401 && !original._retry && !isAuthRoute) {
       original._retry = true;
