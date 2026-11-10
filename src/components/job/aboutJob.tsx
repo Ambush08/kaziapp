@@ -32,7 +32,7 @@ const AboutJob = () => {
         <p className="font-bold text-md tracking-wide">Responsibilities</p>
         <ul className="flex flex-col items-start gap-2 text-muted list-disc px-4">
           {
-            job.responsibilities.length > 0 && job.responsibilities.map((task: string, index) => (
+            job.responsibilities.length > 0 && job.responsibilities.map((task: string, index: string) => (
               <li key={index}>{task}</li>
             ))
           }
