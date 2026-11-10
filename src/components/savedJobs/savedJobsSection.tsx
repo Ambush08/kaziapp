@@ -11,7 +11,7 @@ const SavedJobsSection = () => {
                 <div className="flex flex-col items-start gap-3 w-full">
                     <div className="flex items-center justify-between w-full">
                         <h3 className="text-xl font-bold otracking-wide lg:text-2xl">Your saved opportunities</h3>
-                        <Link to='/jobs' className="text-brand text-sm font-semibold flex items-center gap-1 hover:text-green-600 transition-all duration-300">
+                        <Link to='/jobs' className="text-brand text-xs font-semibold flex items-center gap-1 hover:text-green-600 transition-all duration-300">
                             <span>Browse all jobs</span>
                             <ArrowRight size={16} />
                         </Link>

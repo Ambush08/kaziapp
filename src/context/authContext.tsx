@@ -1,10 +1,13 @@
 import { api, refreshAccessToken, setAccessToken } from "../utils/api";
 import { createContext, useEffect, useState, useContext } from "react";
 import type { ReactNode } from "react";
+import axios from "axios";
 
 interface AuthContextType {
   isAuthenticated: boolean;
   initializing: boolean;
+  loading: boolean,
+  error: string,
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   signUp: (
@@ -13,7 +16,8 @@ interface AuthContextType {
     email: string,
     password: string
   ) => Promise<void>;
-  fetchJob: (jobId: string) => Promise<void>;
+  job: any,
+  fetchJob: (jobId: string) => Promise<void>
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -21,6 +25,11 @@ const AuthContext = createContext<AuthContextType | null>(null);
 const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [initializing, setInitializing] = useState(true);
+  const [job, setJob] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] =  useState('');
+
+  const controller = new AbortController();
 
   // Restore the session on page load using the refresh cookie
   useEffect(() => {
@@ -53,19 +62,30 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
 
-  const fetchJob = async (jobId: string) => {
+  const fetchJob = async(jobId: string) => {
+    setJob(null);
+    setLoading(true);
+    setError('');
     try {
-      const response = await api.get(`/api/v1/jobs/job/${jobId}`);
+      const response = await api.get(`/api/v1/jobs/job/${jobId}`,{
+        signal: controller.signal
+    });
 
-      const data = response.data.job;
+    setJob(response.data.job);
 
-      console.log(data)
     } catch (error) {
-      console.error(error)
+      if (axios.isCancel(error)) return; // ignore aborted requests
+        if (axios.isAxiosError(error) && error.response?.status === 404) {
+          setError("Job not found.");
+        } else {
+          setError("Failed to load job. Please try again.");
+        }
+    } finally {
+      setLoading(false)
     }
   }
   
-  return <AuthContext value={{ login, logout, isAuthenticated, initializing, signUp, fetchJob}}>{children}</AuthContext>;
+  return <AuthContext value={{ login, logout, isAuthenticated, initializing, signUp, job, fetchJob, error, loading }}>{children}</AuthContext>;
 };
 
 export const useAuth = () => {
