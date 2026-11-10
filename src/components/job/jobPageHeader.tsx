@@ -14,7 +14,7 @@ const JobPageHeader = () => {
     fetchJob(id);
 }, [id]);
 
-if(!job){
+if(!job || loading){
   return <p>Loading...</p>
 }
 

@@ -50,7 +50,7 @@ const AboutJob = () => {
         </ul>
       </div>
 
-      <Link to={''} className="text-light text-sm rounded-lg p-3 bg-green-700 flex items-center gap-2 hover:bg-brand transition-colors">
+      <Link to={'/apply/:id'} className="text-light text-sm rounded-lg p-3 bg-green-700 flex items-center gap-2 hover:bg-brand transition-colors">
         <span>Apply for this role</span>
         <ArrowRight size={16} />
       </Link>
