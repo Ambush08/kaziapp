@@ -9,9 +9,6 @@ const AboutJob = () => {
   const {job, fetchJob } = useAuth()
   const {id} = useParams();
 
-  console.log(id);
-  console.log(job)
-
   useEffect(() => {
     if(!id) return;
 

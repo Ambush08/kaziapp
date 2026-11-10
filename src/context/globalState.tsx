@@ -43,8 +43,6 @@ export const GlobalState = ({ children }: GlobalStateProps) => {
 
       const data = response.data.jobs;
 
-      console.log("Hero jobs:", data);
-
       setHeroJobs(data);
     } catch (error) {
       console.error(error);
@@ -73,8 +71,6 @@ export const GlobalState = ({ children }: GlobalStateProps) => {
 
       const data = response.data.jobs;
 
-      console.log("Jobs:", data);
-
       setJobs(data);
     } catch (error) {
       console.error(error);
@@ -95,7 +91,6 @@ export const GlobalState = ({ children }: GlobalStateProps) => {
       const data = response.data.blogs;
 
       setBlogs(data);
-      console.log("Blogs:", data);
     } catch (error) {
       console.error("Failed to fetch blogs", error);
       setError("Failed to fetch blogs. Try again");
@@ -113,8 +108,6 @@ export const GlobalState = ({ children }: GlobalStateProps) => {
       );
 
       const data = response.data.categories;
-
-      console.log("Categories:", data);
 
       setCategories(data);
     } catch (error) {

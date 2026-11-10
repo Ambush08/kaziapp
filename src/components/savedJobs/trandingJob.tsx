@@ -14,7 +14,7 @@ const TrendingJob = ({job}: any) => {
       </div>
 
       <div className="felx flex-col space-y-3 border-b border-b-gray-300 w-full pb-6">
-        <Link to={"/job/id"} className="text-md font-bold text-brand hover:text-green-800 transition-colors">
+        <Link to={`/job/${job.job.id}`} className="text-md font-bold text-brand hover:text-green-800 transition-colors">
           {job.job.title}
         </Link>
         <p className="text-xs text-muted tracking-wide">
@@ -50,7 +50,7 @@ const TrendingJob = ({job}: any) => {
           <span className="text-xs text-muted">per month</span>
         </h3>
 
-        <Link to={"/job/id"} className="text-brand">
+        <Link to={`/job/${job.job.id}`} className="text-brand">
           <FiArrowUpRight />
         </Link>
       </div>
