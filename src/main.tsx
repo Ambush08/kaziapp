@@ -10,7 +10,9 @@ createRoot(document.getElementById("root")!).render(
   <GlobalState>
     <AuthProvider>
       <BrowserRouter>
-        <App />
+        <StrictMode>
+          <App />
+        </StrictMode>
       </BrowserRouter>
     </AuthProvider>
   </GlobalState>,
