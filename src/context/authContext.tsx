@@ -15,7 +15,7 @@ export interface Job {
   company: string;
   logo: string;
   category: Category;
-  description: string;
+  desciption: string;
   responsibilities: string[];
   skills: string[];
   experienceLevel: string;
