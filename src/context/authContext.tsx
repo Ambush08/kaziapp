@@ -3,6 +3,33 @@ import { createContext, useEffect, useState, useContext } from "react";
 import type { ReactNode } from "react";
 import axios from "axios";
 
+
+export interface Category {
+  _id: string;
+  name: string;
+  slug: string;
+}
+
+export interface Job {
+  id: string;
+  title: string;
+  company: string;
+  logo: string;
+  category: Category;
+  description: string;
+  responsibilities: string[];
+  skills: string[];
+  experienceLevel: string;
+  jobType: string;
+  workplace: string;
+  location: string;
+  salaryMin: number;
+  salaryMax: number;
+  status: string;
+  postedBy: string;
+  createdAt: string;
+}
+
 interface AuthContextType {
   isAuthenticated: boolean;
   initializing: boolean;
@@ -16,18 +43,29 @@ interface AuthContextType {
     email: string,
     password: string
   ) => Promise<void>;
-  job: any,
-  fetchJob: (jobId: string) => Promise<void>
+  job: Job | null;
+  fetchJob: (jobId: string) => Promise<void>;
+  similarJobs: Job[];
+  similarLoading: boolean;
+  similarError: string;
 }
+
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [initializing, setInitializing] = useState(true);
-  const [job, setJob] = useState(null);
+  const [job, setJob] = useState<Job | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] =  useState('');
+  const [similarJobs, setSimilarJobs] = useState<Job[]>([]);
+const [similarLoading, setSimilarLoading] = useState(false);
+const [similarError, setSimilarError] = useState("");
+
+
+const categoryId = job?.category?._id;
+const currentJobId = job?.id;
 
   const controller = new AbortController();
 
@@ -84,8 +122,45 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
       setLoading(false)
     }
   }
+
+
+
+  useEffect(() => {
+  if (!categoryId) {
+    setSimilarJobs([]);
+    setSimilarError("");
+    setSimilarLoading(false);
+    return;
+  };
+
+  const controller = new AbortController();
+
+  const getSimilarJobs = async () => {
+    setSimilarLoading(true);
+    setSimilarError("");
+    try {
+      const res = await api.get("/api/v1/jobs", {
+        params: { category: categoryId }, // must match the query param name your backend reads
+        signal: controller.signal,
+      });
+
+      const jobs: Job[] = res.data.jobs;
+      setSimilarJobs(jobs.filter((job: Job) => job.job.id !== currentJobId)); 
+    } catch (error) {
+      if (axios.isCancel(error)) return;
+      setSimilarError("Failed to fetch similar jobs.");
+    } finally {
+      if (!controller.signal.aborted) setSimilarLoading(false);
+    }
+  };
+
+  getSimilarJobs();
+
+  return () => controller.abort(); 
+}, [categoryId, currentJobId]);
+
   
-  return <AuthContext value={{ login, logout, isAuthenticated, initializing, signUp, job, fetchJob, error, loading }}>{children}</AuthContext>;
+  return <AuthContext value={{ login, logout, isAuthenticated, initializing, signUp, job, fetchJob, error, loading, similarJobs, similarError, similarLoading }}>{children}</AuthContext>;
 };
 
 export const useAuth = () => {

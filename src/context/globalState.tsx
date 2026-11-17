@@ -71,6 +71,8 @@ export const GlobalState = ({ children }: GlobalStateProps) => {
 
       const data = response.data.jobs;
 
+      console.log(data)
+
       setJobs(data);
     } catch (error) {
       console.error(error);
@@ -110,9 +112,11 @@ export const GlobalState = ({ children }: GlobalStateProps) => {
       const data = response.data.categories;
 
       setCategories(data);
+
+      console.log(data);
     } catch (error) {
       console.log("Failed to fetch categories", error);
-      setError("Failed to fetch blogs. Try again");
+      setError("Failed to fetch categories. Try again");
     } finally {
       setLoading(false);
     }
@@ -127,7 +131,15 @@ export const GlobalState = ({ children }: GlobalStateProps) => {
 
   return (
     <GlobalContext.Provider
-      value={{ jobs, loading, error, blogs, categories, heroJobs, getJobs }}
+      value={{
+        jobs,
+        loading,
+        error,
+        blogs,
+        categories,
+        heroJobs,
+        getJobs,
+      }}
     >
       {children}
     </GlobalContext.Provider>

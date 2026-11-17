@@ -15,17 +15,17 @@ const JobPageHeader = () => {
 }, [id]);
 
 if(!job || loading){
-  return <p>Loading...</p>
+  return <p className="hidden">Loading...</p>
 }
 
   return (
-    <div className="flex flex-col items-start gap-4 w-full">
+    <div className="flex text-xs flex-col items-start gap-4 w-full">
       <h4 className="flex items-center text-green-600 font-semibold gap-1">
         All open roles
         <span className="text-muted font-light">
           <ChevronRight size={14}/>
         </span>
-        <span className="text-muted font-light">{job.title}</span>
+        <span className="text-muted font-light text-sm">{job.title}</span>
       </h4>
 
       <div className="border border-gray-300 rounded-lg bg-light p-6 flex flex-col items-start gap-4 md:flex-row lg:justify-between w-full">
@@ -38,7 +38,7 @@ if(!job || loading){
             >
               {job.title}
             </h4>
-            <p className="text-muted">{job.location}</p>
+            <p className="text-muted text-xs">{job.location}</p>
             <ul className="flex flex-wrap gap-2 py-2 items-center">
               <li className="rounded-md items-center text-xs py-1 px-2 text-muted bg-gray-200">
                 {job.jobType}
@@ -66,7 +66,7 @@ if(!job || loading){
           
           <Link
             to={`/job/apply/${id}`}
-            className="flex items-center cursor-pointer gap-1 text-xs text-light justify-center py-3 rounded-lg font-semibold hover:bg-green-700 bg-brand px-6"
+            className="flex items-center cursor-pointer gap-1 text-sm text-light justify-center py-3 rounded-lg font-semibold hover:bg-green-700 bg-brand px-6"
           >
             <span>Apply now</span>
             <ArrowRight size={14} />

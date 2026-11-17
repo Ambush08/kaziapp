@@ -14,7 +14,7 @@ const JobPageCard = ({ job }: { job: any }) => {
           <div className="flex flex-col gap-3 items-start">
             <Link
               to={`/job/${job.job.id}`}
-              className="text-md font-bold hover:text-brand"
+              className="text-md font-bold text-brand"
             >
               {job.job.title}
             </Link>

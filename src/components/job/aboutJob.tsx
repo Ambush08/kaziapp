@@ -20,14 +20,14 @@ const AboutJob = () => {
     <div className="flex flex-col items-start w-full gap-6 bg-light border border-gray-300 px-6 rounded-lg py-6 flex-2">
       <div className="space-y-3">
         <p className="font-bold text-md tracking-wide">About the role</p>
-        <p className="text-muted leading-relaxed">
+        <p className="text-muted text-xs leading-relaxed">
           {job.desciption}
         </p>
       </div>
 
       <div className="space-y-3">
         <p className="font-bold text-md tracking-wide">Responsibilities</p>
-        <ul className="flex flex-col items-start gap-2 text-muted list-disc px-4">
+        <ul className="flex flex-col items-start gap-2 text-muted text-xs list-disc px-4">
           {
             job.responsibilities.length > 0 && job.responsibilities.map((task: string, index: string) => (
               <li key={index}>{task}</li>
@@ -38,7 +38,7 @@ const AboutJob = () => {
 
       <div className="space-y-3">
         <p className="font-bold text-md tracking-wide">Skills</p>
-        <ul className="flex flex-col items-start gap-2 text-muted list-disc px-4">
+        <ul className="flex flex-col items-start gap-2 text-muted text-xs list-disc px-4">
           {
             job.skills.length > 0 && job.skills.map((skill: string, index: number) => (
               <li key={index}>{skill}</li>
@@ -47,7 +47,7 @@ const AboutJob = () => {
         </ul>
       </div>
 
-      <Link to={'/apply/:id'} className="text-light text-sm rounded-lg p-3 bg-green-700 flex items-center gap-2 hover:bg-brand transition-colors">
+      <Link to={'/apply/:id'} className="text-light text-sm font-semibold rounded-lg p-3 bg-green-700 flex items-center gap-2 hover:bg-brand transition-colors">
         <span>Apply for this role</span>
         <ArrowRight size={16} />
       </Link>

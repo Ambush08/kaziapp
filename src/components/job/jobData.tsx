@@ -93,7 +93,7 @@ const JobData = () => {
         <p className="text-xs font-semibold">{formatTime(job.createdAt)}</p>
       </div>
 
-      <button className="bg-green-700 text-light flex items-center gap-3 justify-center py-2.5 font-semibold rounded-lg hover:bg-brand transition-colors cursor-pointer">
+      <button className="bg-green-700 text-light text-sm flex items-center gap-3 justify-center py-2.5 font-semibold rounded-lg hover:bg-brand transition-colors cursor-pointer">
         <Bookmark size={18} />
         <span>Save job</span>
       </button>

@@ -1,7 +1,6 @@
 import Footer from "../../components/footer/footer"
 import JobPage from "../../components/job/jobPage";
-import SimilarJobs from "../../components/job/similarJobs";
-import Navbar from "../../components/nav/navbar"
+import Navbar from "../../components/nav/navbar";
 
 
 
@@ -12,7 +11,6 @@ const JobPost = () => {
         <>
             <Navbar />
             <JobPage />
-            <SimilarJobs />
             <Footer />
         </>
     )

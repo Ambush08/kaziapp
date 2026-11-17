@@ -1,34 +1,28 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import SimilarJob from "./similarJob";
-import { GlobalContext } from "../../context/globalState";
-import { useContext } from "react";
+import { useAuth } from "../../context/authContext";
 
 
 
 const SimilarJobs = () => {
-  const context = useContext(GlobalContext);
+  const { similarJobs, similarError, similarLoading } = useAuth();
 
-  if(!context){
-    throw new Error('Job cards must be used within global context')
+  if(similarError){
+    return <p className="hidden text-xs">{similarError}</p>
   }
 
-  const { jobs, error, loading } = context;
-
-  if(error){
-    return <p>{error}</p>
+  if(similarLoading){
+    return <p className="text-xs hidden">Loading similar jobs</p>
   }
 
-  if(loading){
-    return <p>Loading...</p>
-  }
 
-  if(jobs.length === 0){
-    return <p>No jobs at the moment</p>
+  if(similarJobs.length === 0){
+    return <p className="text-xs hidden">No similar jobs at the moment</p>
   }
+  
   return (
-    <section className="w-full py-8 bg-gray-200">
-      <div className="flex flex-col items-sart gap-3 max-w-6xl mx-auto px-6">
+      <div className="flex flex-col items-sart gap-3 max-w-6xl mx-auto">
         <div className="flex items-start justify-between">
           <div className="space-y-2">
             <h3 className="text-2xl font-semibold">Similar roles</h3>
@@ -49,13 +43,12 @@ const SimilarJobs = () => {
         {/* Similar jobs */}
         <div className="grid grid-cols-1 gap-4 w-full lg:grid-cols-3 lg:gap-6 items-stretch">
             {
-              jobs.map((job) => (
+              similarJobs.map((job) => (
                 <SimilarJob key={job.job.id} job={job}/>
               ))
             }
         </div>
       </div>
-    </section>
   );
 };
 
