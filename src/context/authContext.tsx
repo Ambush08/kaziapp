@@ -146,7 +146,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
       setSimilarError("");
       try {
         const res = await api.get("/api/v1/jobs", {
-          params: { category: categoryId }, // must match the query param name your backend reads
+          params: { category: categoryId }, 
           signal: controller.signal,
         });
 
