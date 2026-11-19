@@ -12,6 +12,9 @@ const JobFilters = () => {
     throw new Error("JobCards must be used within GlobalState");
   }
 
+  const { clearFilters} = context;
+
+
   return (
     <div className="p-4 border border-gray-300 rounded-lg space-y-4">
       <div className="border-b border-b-gray-300 text-sm font-semibold tracking-wide py-2">
@@ -36,10 +39,12 @@ const JobFilters = () => {
           type="checkbox"
           className="accent-brand"
         />
-        <label htmlFor="clear-filters">Saved Jobs</label>
+        <label htmlFor="saved-jobs" className="cursor-pointer">Saved Jobs</label>
       </div>
 
-      <button className="text-xs text-muted cursor-pointer" >Clear Filters</button>
+      <button 
+      onClick={clearFilters}
+      className="text-xs text-brand font-semibold cursor-pointer">Clear Filters</button>
     </div>
   );
 };

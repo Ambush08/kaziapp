@@ -25,7 +25,7 @@ if(!job || loading){
         <span className="text-muted font-light">
           <ChevronRight size={14}/>
         </span>
-        <span className="text-muted font-light text-sm">{job.title}</span>
+        <span className="text-muted font-light text-xs">{job.title}</span>
       </h4>
 
       <div className="border border-gray-300 rounded-lg bg-light p-6 flex flex-col items-start gap-4 md:flex-row lg:justify-between w-full">

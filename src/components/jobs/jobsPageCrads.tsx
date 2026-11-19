@@ -14,7 +14,7 @@ const JobsPageCards = () => {
         throw new Error("GlobalContext is not available");
     }
 
-    const { jobs, loading, error } = context;
+    const { jobs, loading, error, totalJobs } = context;
 
     if(loading) {
         return <p className="text-xs text-muted">Loading...</p>
@@ -32,7 +32,7 @@ const JobsPageCards = () => {
             <div className="flex flex-col lg:flex-row items-start lg:items-center lg:justify-between gap-3 w-full">
                 <div className="flex flex-col gap-2 items-start">
                     <h3 className="text-2xl font-bold">All open roles</h3>
-                    <p className="text-xs font-semibold">6 <span className="text-xs text-muted">of 6</span></p>
+                    <p className="text-xs font-semibold">{jobs.length} <span className="text-xs text-muted">of {totalJobs}</span></p>
                 </div>
                 <div className="text-muted text-xs border border-gray-300 flex items-center gap-2 rounded-md p-2">
                     <Search size={14}/>

@@ -1,15 +1,36 @@
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { GlobalContext } from "../../context/globalState";
 
-const work = ["On-site", "Remote", "Hybrid"];
+const workArrangement = [
+  { value: "", label: "All" },
+  { value: "On-site", label: "On-site" },
+  { value: "Remote", label: "Remote" },
+  { value: "Hybrid", label: "Hybrid" },
+];
 
 const WorkArrangement = () => {
+  const context = useContext(GlobalContext);
+
+  if(!context){
+    throw new Error('Job filters must be used withing global context')
+  }
+
+  const { getJobs, filters} = context;
   const [openFilter, setOpenFilter] = useState(false);
-  const [selectedWork, setSelectedWork] = useState("");
+  const selectedWork = filters.workplace?? "";
 
   const handleOpenFilter = () => {
     setOpenFilter(!openFilter);
   };
+
+
+  const handleChangeWork = (workplace: string) => {
+    getJobs({
+      ...filters,
+      workplace
+    })
+  }
 
   return (
     <div className="flex flex-col gap-2 items-start border-b border-b-gray-300 pb-3">
@@ -29,25 +50,26 @@ const WorkArrangement = () => {
       {
         openFilter && (
             <ul className="flex flex-col items-start gap-3 w-full">
-        {work.length &&
-          work.map((item) => {
-            const isSelected = selectedWork === item;
+        {workArrangement.length &&
+          workArrangement.map(({ value, label}) => {
+            const isSelected = selectedWork === value;
 
+            const id = `work-${value || 'all'}`
             return (
               <li
-                key={item}
+                key={id}
                 className={`flex w-full items-center gap-2 rounded-md px-3 py-2 text-xs cursor-pointer transition-colors ${isSelected ? "bg-green-50 text-green-800" : "text-muted hover:bg-gray-50"}`}
               >
                 <input
                   type="radio"
-                  id={item}
+                  id={id}
                   name="workArrangement"
-                  value={item}
-                  checked={selectedWork === item}
-                  onChange={() => setSelectedWork(item)}
+                  value={value}
+                  checked={selectedWork === value}
+                  onChange={() => handleChangeWork(value)}
                   className="h-4 w-4 accent-green-700"
                 />
-                <label htmlFor={item}>{item}</label>
+                <label htmlFor={id} className="w-full">{label}</label>
               </li>
             );
           })}
